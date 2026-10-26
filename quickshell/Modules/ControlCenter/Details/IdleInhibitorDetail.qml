@@ -92,6 +92,18 @@ Item {
             }
 
             CcGroup {
+                visible: SessionService.loginctlAvailable
+
+                CcToggleRow {
+                    iconName: "laptop"
+                    text: I18n.tr("Stay awake with the lid closed")
+                    description: I18n.tr("Closing the lid won't suspend either", "keep awake option description")
+                    checked: SettingsData.keepAwakeBlocksSleep
+                    onToggled: checked => SettingsData.set("keepAwakeBlocksSleep", checked)
+                }
+            }
+
+            CcGroup {
                 Flow {
                     width: parent.width
                     spacing: Theme.spacingS
