@@ -89,15 +89,10 @@ Item {
                     checked: SessionService.idleInhibited
                     onToggled: checked => checked ? SessionService.enableIdleInhibit(0) : SessionService.disableIdleInhibit()
                 }
-            }
-
-            CcGroup {
-                visible: SessionService.loginctlAvailable
 
                 CcToggleRow {
-                    iconName: "laptop"
+                    visible: SessionService.loginctlAvailable
                     text: I18n.tr("Stay awake with the lid closed")
-                    description: I18n.tr("Closing the lid won't suspend either", "keep awake option description")
                     checked: SettingsData.keepAwakeBlocksSleep
                     onToggled: checked => SettingsData.set("keepAwakeBlocksSleep", checked)
                 }

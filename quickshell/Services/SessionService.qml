@@ -1076,8 +1076,6 @@ printf 'uwsm=%s\nelogind=%s\nloginctl=%s\nsystemctl=%s\nusermgr=%s\nhibernate=%s
     function syncKeepAwake() {
         if (!loginctlAvailable)
             return;
-        if (!DMSService.apiVersion || DMSService.apiVersion < 39)
-            return;
         DMSService.sendRequest("loginctl.setKeepAwake", {
             enabled: idleInhibited && SettingsData.keepAwakeBlocksSleep
         }, response => {
