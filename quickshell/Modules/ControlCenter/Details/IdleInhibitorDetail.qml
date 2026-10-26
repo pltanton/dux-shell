@@ -89,13 +89,6 @@ Item {
                     checked: SessionService.idleInhibited
                     onToggled: checked => checked ? SessionService.enableIdleInhibit(0) : SessionService.disableIdleInhibit()
                 }
-
-                CcToggleRow {
-                    visible: SessionService.loginctlAvailable
-                    text: I18n.tr("Stay awake with the lid closed")
-                    checked: SettingsData.keepAwakeBlocksSleep
-                    onToggled: checked => SettingsData.set("keepAwakeBlocksSleep", checked)
-                }
             }
 
             CcGroup {
@@ -118,6 +111,17 @@ Item {
                             onClicked: SessionService.enableIdleInhibit(modelData.minutes)
                         }
                     }
+                }
+            }
+
+            CcGroup {
+                visible: SessionService.loginctlAvailable
+
+                CcToggleRow {
+                    iconName: "laptop"
+                    text: I18n.tr("Stay awake with the lid closed")
+                    checked: SettingsData.keepAwakeBlocksSleep
+                    onToggled: checked => SettingsData.set("keepAwakeBlocksSleep", checked)
                 }
             }
         }
